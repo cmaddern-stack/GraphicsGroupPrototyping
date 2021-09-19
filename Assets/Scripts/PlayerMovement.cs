@@ -16,8 +16,6 @@ public class PlayerMovement : MonoBehaviour
     private float mouseSensitivity = 5;
     private float cameraPitch = 0;
 
-    private float upwardForce = 0;
-
     public float boostAmount = 3;
     public float boostTime = 1;
     private float boostMultiplier = 1f;
@@ -62,11 +60,6 @@ public class PlayerMovement : MonoBehaviour
             canBoost = true;
         }
 
-        if (boostTapTimeLeft > 0) {
-            boostTapTimeLeft -= Time.deltaTime;
-        }else{
-            boostTapTimeLeft = 0;
-        }
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (!IsGrounded()) {
                 if (canBoost) {
@@ -74,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
                     canBoost = false;
                 }
             }else{
-                boostTapTimeLeft = 0.5f;
                 jump();
             }
         }
@@ -97,6 +89,5 @@ public class PlayerMovement : MonoBehaviour
         if (boostMultiplier < 1f) {
             boostMultiplier = 1f;
         }
-
     }
 }
